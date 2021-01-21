@@ -175,7 +175,7 @@ void min_poll(struct min_context *self, uint8_t *buf, uint32_t buf_len);
 void min_transport_reset(struct min_context *self, bool inform_other_side);
 
 // CALLBACK. Handle incoming MIN frame
-void min_application_handler(uint8_t min_id, uint8_t *min_payload, uint8_t len_payload, uint8_t port);
+void min_application_handler(uint8_t min_id, uint8_t seq, uint8_t *min_payload, uint8_t len_payload, uint8_t port);
 
 #ifdef TRANSPORT_PROTOCOL
 // CALLBACK. Must return current time in milliseconds.

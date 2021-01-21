@@ -418,7 +418,7 @@ static void valid_frame_received(struct min_context *self)
 
                     // Pass frame up to application handler to deal with
                     min_debug_print("Incoming app frame seq=%d, id=%d, payload len=%d\n", seq, id_control & (uint8_t)0x3fU, payload_len);
-                    min_application_handler(id_control & (uint8_t)0x3fU, payload, payload_len, self->port);
+                    min_application_handler(id_control & (uint8_t)0x3fU, seq, payload, payload_len, self->port);
                 } else {
                     // Discard this frame because we aren't looking for it: it's either a dupe because it was
                     // retransmitted when our ACK didn't get through in time, or else it's further on in the
@@ -428,7 +428,7 @@ static void valid_frame_received(struct min_context *self)
             }
             else {
                 // Not a transport frame
-                min_application_handler(id_control & (uint8_t)0x3fU, payload, payload_len, self->port);
+                min_application_handler(id_control & (uint8_t)0x3fU, seq, payload, payload_len, self->port);
             }
             break;
     }
